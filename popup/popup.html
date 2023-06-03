@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Acho, where are we?</title>
-    <link href="popup.css" rel="stylesheet" type="text/css" />
+	<meta charset="UTF-8">
+	<title>Extension Toggle</title>
+	<style>
+		body {
+			width: 200px;
+			height: 100px;
+		}
+	</style>
 </head>
 <body>
-    <p id="dialog-box"></p>
-    <script src='popup.js'></script>
-
+	<h3>Extension Toggle</h3>
+	<label class="switch">
+		<input type="checkbox" id="toggle-switch">
+		<span class="slider round"></span>
+	</label>
+	<script src="popup.js"></script>
 </body>
 </html>

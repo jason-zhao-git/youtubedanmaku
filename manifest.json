@@ -1,16 +1,13 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Youtube Bullet Screen",
     "version": "0.0.1",
     "description": "Add stream like super chat window and potential bullet screen effect to all time stamped comment",
     "content_scripts": [
         {
-            "matches": ["https://www.youtube.com/*"],
+            "matches": ["https://*.youtube.com/*", "https://m.youtube.com/*"],
             "js": ["content/contentscript.js"]
         }
     ],
-    "browser_action": {
-        "default_popup": "popup/popup.html"
-    },
-    "permissions": ["tabs", "storage"]
+    "permissions": ["tabs", "storage", "activeTab"]
 }

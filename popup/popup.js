@@ -1,28 +1,20 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const dialogBox = document.getElementById('dialog-box');
-    const query = { active: true, currentWindow: true };
+let toggleSwitch = document.getElementById("toggle-switch");
 
-    chrome.tabs.query(query, (tabs) => {
-        dialogBox.innerHTML = getBarkedTitle(tabs[0].title);
-    });
+// Check if the extension is currently on or off
+chrome.storage.local.get('extensionState', function(data) {
+	if (data.extensionState === undefined) {
+		// If the extension state hasn't been set yet, default to "on"
+		chrome.storage.local.set({ extensionState: true });
+		toggleSwitch.checked = true;
+	} else {
+		// Otherwise, set the switch to match the stored extension state
+		toggleSwitch.checked = data.extensionState;
+	}
 });
 
-const getBarkedTitle = (tabTitle) => {
-    const barkTitle = `${getRandomBark()} Ahem.. I mean, we are at: ${tabTitle}`
-    return barkTitle;
-}
+// Listen for changes to the switch and store the new extension state in localStorage
+toggleSwitch.addEventListener('change', function() {
+	chrome.storage.local.set({ extensionState: toggleSwitch.checked });
+});
 
-const barks = [
-    'Barf barf!',
-    'Birf birf!',
-    'Woof woof!',
-    'Arf arf!',
-    'Yip yip!',
-    'Biiiirf!'
-]
-
-const getRandomBark = () => {
-    const bark = barks[Math.floor(Math.random() * barks.length)];
-    return bark;
-}
 
