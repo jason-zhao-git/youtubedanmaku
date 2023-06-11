@@ -48,11 +48,27 @@ switchBtn.onclick = () => {
     if (defaultcolor === 0) {
         path.setAttribute('fill', 'green');
         defaultcolor = 1;
+        update_comment_block(defaultcolor);
     } else {
         path.setAttribute('fill', '#fff');
         defaultcolor = 0;
+        update_comment_block(defaultcolor);
     }
     
     
+}
+
+//======== Inject Comment Block ===========//
+let youtubepanel = document.getElementById("secondary");
+
+function update_comment_block(defaultcolor) {
+    let switchon = defaultcolor;
+    if (switchon) {
+        console.log("on")
+        console.log(youtubepanel)
+        console.log(chatbox1)
+    } else {
+        console.log("off")
+    }
 }
 

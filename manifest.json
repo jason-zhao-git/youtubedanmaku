@@ -6,7 +6,7 @@
     "content_scripts": [
         {
             "matches": ["https://*.youtube.com/*", "https://m.youtube.com/*"],
-            "js": ["content/contentscript.js"]
+            "js": ["content/contentscript.js", "content/chatbox.js"]
         }
     ],
     "permissions": ["tabs", "storage", "activeTab"]
