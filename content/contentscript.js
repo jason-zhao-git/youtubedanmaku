@@ -1,4 +1,6 @@
 
+// let youtubepanel = document.getElementById("panels");//[0].parentElement.nodeName;
+
 let youtubeRightControls = document.getElementsByClassName("ytp-right-controls");
 
 // ============= Add Button to the Right control panel =================== //
@@ -59,7 +61,41 @@ switchBtn.onclick = () => {
 }
 
 //======== Inject Comment Block ===========//
-let youtubepanel = document.getElementById("secondary");
+function waitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector));
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
+// let youtubepanel = document.getElementById("page-manager").childNodes[-2].childNodes;
+let youtubepanel = waitForElm('#secondary.style-scope.ytd-watch-flexy').then(function (result){  
+            console.log(result);
+            return result;
+        }
+    );//.then(() => {//document.getElementById("page-manager").childNodes[-2].childNodes;
+// let childnode = youtubepanel[0];
+// for (let i = 0; i < youtubepanel.length; i += 1) {
+//     let childnode = youtubepanel[i]
+//     if (childnode.id == 'columns') {
+//         youtubepanel = childnode;
+//         break;
+//     }
+// }
+// // youtubepanel = youtubepanel.
+// youtubepanel = youtubepanel.querySelector("#secondary");//[0].parentElement.nodeName;
 
 function update_comment_block(defaultcolor) {
     let switchon = defaultcolor;
